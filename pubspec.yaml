@@ -29,6 +29,7 @@ dependencies:
   get_it: 7.6.7
   flutter_svg: 2.0.10+1
   permission_handler: 11.3.0
+  device_info_plus: 10.0.1
 
 dev_dependencies:
   flutter_test:

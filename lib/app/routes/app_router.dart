@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:photos/app/core/base/screen_builder.dart';
+import 'package:photos/app/presentaton/modules/photo_access/photo_access_screen.dart';
 import 'package:photos/app/presentaton/modules/splash/splash_screen.dart';
 import 'package:photos/app/routes/app_routes.dart';
 import 'package:photos/app/routes/go_router_observer.dart';
@@ -24,6 +25,13 @@ final GoRouter appRouter = GoRouter(
       name: AppRoutes.splash,
       screenBuilder: (BuildContext context, GoRouterState state) {
         return const SplashScreen();
+      },
+    ),
+    ScreenBuilder<PhotoAccessScreen>(
+      path: _Path.photoAccess,
+      name: AppRoutes.photoAccess,
+      screenBuilder: (BuildContext context, GoRouterState state) {
+        return const PhotoAccessScreen();
       },
     ),
   ],
