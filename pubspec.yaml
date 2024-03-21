@@ -30,6 +30,7 @@ dependencies:
   flutter_svg: 2.0.10+1
   permission_handler: 11.3.0
   device_info_plus: 10.0.1
+  equatable: 2.0.5
 
 dev_dependencies:
   flutter_test:
