@@ -47,7 +47,7 @@ struct Album {
             }
             
         })
-        GeneratedPluginRegistrant.register(withRegistry: self)
+        GeneratedPluginRegistrant.register(with: self)
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     private func fetchAlbums(result: @escaping FlutterResult) {

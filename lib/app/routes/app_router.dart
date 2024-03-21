@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:photos/app/core/base/screen_builder.dart';
 import 'package:photos/app/presentaton/modules/album/album_screen.dart';
 import 'package:photos/app/presentaton/modules/gallery/gallery_screen.dart';
+import 'package:photos/app/presentaton/modules/photo/photo_screen.dart';
 import 'package:photos/app/presentaton/modules/photo_access/photo_access_screen.dart';
 import 'package:photos/app/presentaton/modules/splash/splash_screen.dart';
 import 'package:photos/app/routes/app_routes.dart';
@@ -48,6 +49,13 @@ final GoRouter appRouter = GoRouter(
       name: AppRoutes.gallery,
       screenBuilder: (BuildContext context, GoRouterState state) {
         return const GalleryScreen();
+      },
+    ),
+    ScreenBuilder<PhotoScreen>(
+      path: _Path.photo,
+      name: AppRoutes.photo,
+      screenBuilder: (BuildContext context, GoRouterState state) {
+        return const PhotoScreen();
       },
     ),
   ],

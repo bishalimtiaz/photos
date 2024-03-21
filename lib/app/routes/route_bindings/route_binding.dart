@@ -1,5 +1,6 @@
 import 'package:photos/app/presentaton/modules/album/bindings/album_binding.dart';
 import 'package:photos/app/presentaton/modules/gallery/bindings/gallery_binding.dart';
+import 'package:photos/app/presentaton/modules/photo/bindings/photo_binding.dart';
 import 'package:photos/app/presentaton/modules/photo_access/bindings/photo_access_binding.dart';
 import 'package:photos/app/presentaton/modules/splash/bindings/splash_binding.dart';
 import 'package:photos/app/routes/app_routes.dart';
@@ -12,4 +13,5 @@ final Map<String, Binder> routeBindings = <String, Binder>{
   AppRoutes.photoAccess: () => PhotoAccessBinding(),
   AppRoutes.album: () => AlbumBinding(),
   AppRoutes.gallery: () => GalleryBinding(),
+  AppRoutes.photo: () => PhotoBinding(),
 };
