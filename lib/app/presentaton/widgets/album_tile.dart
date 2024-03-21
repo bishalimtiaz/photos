@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:photos/app/core/constants/app_values.dart';
 import 'package:photos/app/domain/entities/album_entity.dart';
 
 class AlbumTile extends StatelessWidget {
@@ -13,9 +14,9 @@ class AlbumTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(AppValues.dimen_8),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(AppValues.dimen_10),
         child: Stack(
           children: <Widget>[
             Image.file(
@@ -35,8 +36,8 @@ class AlbumTile extends StatelessWidget {
             ),
             // Overlay album name (optional)
             Positioned(
-              bottom: 8.0,
-              left: 8.0,
+              bottom: AppValues.dimen_8,
+              left: AppValues.dimen_8,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +48,7 @@ class AlbumTile extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 3),
+                  const SizedBox(height: AppValues.dimen_3),
                   Text(
                     "${album.numberOfPhotos} Photos",
                     style: const TextStyle(

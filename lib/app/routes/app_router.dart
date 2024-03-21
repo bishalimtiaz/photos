@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:photos/app/core/base/screen_builder.dart';
 import 'package:photos/app/presentaton/modules/album/album_screen.dart';
+import 'package:photos/app/presentaton/modules/gallery/gallery_screen.dart';
 import 'package:photos/app/presentaton/modules/photo_access/photo_access_screen.dart';
 import 'package:photos/app/presentaton/modules/splash/splash_screen.dart';
 import 'package:photos/app/routes/app_routes.dart';
@@ -40,6 +41,13 @@ final GoRouter appRouter = GoRouter(
       name: AppRoutes.album,
       screenBuilder: (BuildContext context, GoRouterState state) {
         return const AlbumScreen();
+      },
+    ),
+    ScreenBuilder<GalleryScreen>(
+      path: _Path.gallery,
+      name: AppRoutes.gallery,
+      screenBuilder: (BuildContext context, GoRouterState state) {
+        return const GalleryScreen();
       },
     ),
   ],

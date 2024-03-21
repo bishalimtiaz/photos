@@ -4,6 +4,7 @@ import 'package:photos/app/core/base/screen_state.dart';
 import 'package:photos/app/domain/entities/album_entity.dart';
 import 'package:photos/app/presentaton/modules/album/controllers/album_controller.dart';
 import 'package:photos/app/presentaton/widgets/album_tile.dart';
+import 'package:photos/app/routes/app_router.dart';
 import 'package:photos/app/routes/app_routes.dart';
 
 class AlbumScreen extends StatefulWidget {
@@ -50,6 +51,9 @@ class _AlbumScreenState extends ScreenState<AlbumScreen, AlbumController> {
   }
 
   void _onTapAlbum(AlbumEntity entity) async {
-    //TODO: Implement Tap
+    appRouter.pushNamed(
+      AppRoutes.gallery,
+      extra: entity,
+    );
   }
 }

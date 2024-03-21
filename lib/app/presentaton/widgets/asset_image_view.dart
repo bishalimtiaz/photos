@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:photos/app/core/constants/app_values.dart';
 
 class AssetImageView extends StatelessWidget {
   const AssetImageView({
     required this.fileName,
-    this.height = 20,
-    this.width = 20,
+    this.height = AppValues.dimen_20,
+    this.width = AppValues.dimen_20,
     this.color,
     this.scale,
     this.fit,
