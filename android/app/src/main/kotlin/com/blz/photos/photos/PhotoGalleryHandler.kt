@@ -46,11 +46,9 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
 
         val contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         val projections = arrayOf(
-            MediaStore.Images.Media._ID,
             MediaStore.Images.Media.BUCKET_ID,
             MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
-            MediaStore.Images.ImageColumns.DATA
-            // Use MediaStore.Images.Media.DATA only if absolutely necessary and with awareness of Scoped Storage limitations
+            MediaStore.Images.Media.DATA,
         )
         val orderBy = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
         val findAlbums = HashMap<String, Album>()
@@ -59,26 +57,21 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
             context.contentResolver.query(contentUri, projections, null, null, orderBy)
                 ?.use { cursor ->
                     val bucketIdIndex =
-                        cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_ID)
+                        cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)
                     val bucketNameIndex =
-                        cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME)
-                    val imageUriIndex =
-                        cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATA)
+                        cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME)
 
                     while (cursor.moveToNext()) {
                         val bucketId = cursor.getString(bucketIdIndex)
                         val albumName = cursor.getString(bucketNameIndex)
-                        if (albumName.contains("mipmap") || albumName.contains("drawable")) continue // Skip non-image directories
+                        if (albumName.contains("mipmap") || albumName.contains("drawable")) continue
+                        val imageUriIndex =
+                            cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                        val imageUri = Uri.parse(cursor.getString(imageUriIndex))
 
-                        val lastImageUri = Uri.parse(cursor.getString(imageUriIndex))
-
-                        val album = Album(
-                            id = bucketId,
-                            name = albumName,
-                            coverUri = lastImageUri
-                        )
-                        findAlbums[bucketId] = album
-                        album.count++
+                        findAlbums.getOrPut(bucketId) {
+                            Album(id = bucketId, name = albumName, coverUri = imageUri)
+                        }.count++
                     }
                 }
 
@@ -94,15 +87,15 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
     // Function to fetch photos from a specific album
     private fun fetchPhotosFromAlbum(albumId: String, result: MethodChannel.Result) {
         if (!hasStoragePermission()) {
-            result.error("PERMISSION_DENIED", "Storage permission not granted", null);
-            return;
+            result.error("PERMISSION_DENIED", "Storage permission not granted", null)
+            return
         }
 
-        val contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        val projections = arrayOf(MediaStore.Images.Media.DATA);
+        val contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        val projections = arrayOf(MediaStore.Images.Media.DATA)
         val selection = MediaStore.Images.Media.BUCKET_ID + " = ?"
         val selectionArgs = arrayOf(albumId)
-        val orderBy = MediaStore.Images.Media.DATE_TAKEN + " DESC";
+        val orderBy = MediaStore.Images.Media.DATE_TAKEN + " DESC"
 
         val photos = mutableListOf<String>()
         try {
@@ -113,16 +106,17 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
                 selectionArgs,
                 orderBy
             )?.use { cursor ->
-                val imageUriIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                val imageUriIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
                 while (cursor.moveToNext()) {
-                    val imagePath = cursor.getString(imageUriIndex);
-                    photos.add(imagePath);
+                    val imagePath = cursor.getString(imageUriIndex)
+                    photos.add(imagePath)
                 }
             }
-
-            result.success(photos);
+            Handler(Looper.getMainLooper()).post {
+                result.success(photos)
+            }
         } catch (e: Exception) {
-            result.error("QUERY_FAILED", "Failed to fetch photos from album: " + e.message, null);
+            result.error("QUERY_FAILED", "Failed to fetch photos from album: " + e.message, null)
         }
     }
 
@@ -155,7 +149,7 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
                 }
 
                 try {
-                    val photos = fetchPhotosFromAlbum(albumId, result)
+                    fetchPhotosFromAlbum(albumId, result)
                 } catch (e: Exception) {
                     result.error("getPhotosError", "Failed to fetch photos", null)
                 }
