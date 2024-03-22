@@ -8,10 +8,13 @@ class PhotosEntity extends Equatable {
     required this.photos,
   });
 
-  factory PhotosEntity.fromPhotoResponse(PhotoResponse response) {
+  factory PhotosEntity.fromPhotoResponse(PhotoResponse? response) {
+    final List<PhotoEntity> photos = response?.photos
+            .map((Photo photo) => PhotoEntity.fromPhoto(photo))
+            .toList() ??
+        const <PhotoEntity>[];
     return PhotosEntity(
-      photos:
-          response.photos.map((photo) => PhotoEntity.fromPhoto(photo)).toList(),
+      photos: photos,
     );
   }
 

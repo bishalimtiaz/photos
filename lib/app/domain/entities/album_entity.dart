@@ -8,9 +8,11 @@ class AlbumsEntity extends Equatable {
     required this.albums,
   });
 
-  factory AlbumsEntity.fromAlbumResponse(AlbumResponse response) {
-    final List<AlbumEntity> albums =
-        response.albums.map((album) => AlbumEntity.fromAlbum(album)).toList();
+  factory AlbumsEntity.fromAlbumResponse(AlbumResponse? response) {
+    final List<AlbumEntity> albums = response?.albums
+            .map((Album album) => AlbumEntity.fromAlbum(album))
+            .toList() ??
+        const <AlbumEntity>[];
     return AlbumsEntity(albums: albums);
   }
 
