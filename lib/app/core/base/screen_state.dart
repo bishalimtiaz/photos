@@ -10,12 +10,12 @@ abstract class ScreenState<T extends StatefulWidget, C extends BaseController>
 
   Widget? bottomNavigationBar;
 
-  PreferredSizeWidget? appbar;
+  PreferredSizeWidget? appbar(BuildContext context) => null;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar,
+      appBar: appbar(context),
       backgroundColor: backgroundColor,
       bottomNavigationBar: bottomNavigationBar,
       body: SafeArea(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:photos/app/core/base/screen_state.dart';
 import 'package:photos/app/core/constants/app_assets.dart';
 import 'package:photos/app/core/constants/app_values.dart';
+import 'package:photos/app/core/utils/context_ext.dart';
 import 'package:photos/app/presentaton/modules/photo_access/controllers/photo_access_controller.dart';
 import 'package:photos/app/presentaton/widgets/asset_image_view.dart';
 import 'package:photos/app/presentaton/widgets/primary_button.dart';
@@ -35,20 +36,23 @@ class _PhotoAccessScreenState
             width: AppValues.dimen_123,
           ),
           const SizedBox(height: AppValues.dimen_8),
-          const Text(
+          Text(
             "Require Permission",
             textAlign: TextAlign.center,
+            style: context.textTheme.bodyMedium,
           ),
           const SizedBox(height: AppValues.dimen_8),
-          const Text(
-            "To show your black and white photos/n we just need your folder permission.\nWe promise, we don’t take your photos.",
+          Text(
+            "To show your black and white photos/n we just need your folder permission.We promise, we don’t take your photos.",
             textAlign: TextAlign.center,
+            style: context.textTheme.bodySmall,
           ),
           const SizedBox(height: AppValues.dimen_42),
           PrimaryButton(
             onTap: _onTapRequestPermission,
-            child: const Text(
+            child: Text(
               "Grant Access",
+              style: context.textTheme.labelLarge,
             ),
           )
         ],

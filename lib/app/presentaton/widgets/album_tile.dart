@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:photos/app/core/constants/app_values.dart';
+import 'package:photos/app/core/utils/context_ext.dart';
 import 'package:photos/app/domain/entities/album_entity.dart';
 
 class AlbumTile extends StatelessWidget {
@@ -44,16 +45,12 @@ class AlbumTile extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     album.albumName,
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
+                    style: context.textTheme.titleMedium,
                   ),
                   const SizedBox(height: AppValues.dimen_3),
                   Text(
                     "${album.numberOfPhotos} Photos",
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
+                    style: context.textTheme.titleSmall,
                   ),
                 ],
               ),

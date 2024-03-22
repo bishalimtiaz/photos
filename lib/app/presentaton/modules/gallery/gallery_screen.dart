@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photos/app/core/base/observer.dart';
 import 'package:photos/app/core/base/screen_state.dart';
+import 'package:photos/app/core/utils/context_ext.dart';
 import 'package:photos/app/domain/entities/photo_entity.dart';
 import 'package:photos/app/presentaton/modules/gallery/controllers/gallery_controller.dart';
 import 'package:photos/app/presentaton/widgets/photo_tile.dart';
@@ -20,10 +21,15 @@ class _GalleryScreenState
   String? get routeName => AppRoutes.gallery;
 
   @override
-  PreferredSizeWidget? get appbar => AppBar(
-        automaticallyImplyLeading: true,
-        title: Text(controller.selectedAlbum?.albumName ?? ""),
-      );
+  PreferredSizeWidget? appbar(BuildContext context) {
+    return AppBar(
+      centerTitle: true,
+      title: Text(
+        controller.selectedAlbum?.albumName ?? " ",
+        style: context.textTheme.displayMedium,
+      ),
+    );
+  }
 
   @override
   Widget buildScreen(BuildContext context) {

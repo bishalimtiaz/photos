@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photos/app/core/styles/theme.dart';
 import 'package:photos/app/routes/app_router.dart';
 
 class App extends StatelessWidget {
@@ -8,9 +9,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: appRouter,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: themeData,
     );
   }
 }

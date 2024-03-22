@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photos/app/core/constants/app_values.dart';
+import 'package:photos/app/core/utils/context_ext.dart';
 
 class PrimaryButton extends StatelessWidget {
   final Function()? onTap;
@@ -16,7 +17,7 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       style: ButtonStyle(
         backgroundColor:
-            MaterialStateProperty.all<Color>(const Color(0xFF66FFB6)),
+            MaterialStateProperty.all<Color>(context.color.primary),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(

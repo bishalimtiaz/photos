@@ -16,13 +16,15 @@ class _PhotoScreenState extends ScreenState<PhotoScreen, PhotoController> {
   String? get routeName => AppRoutes.photo;
 
   @override
-  PreferredSizeWidget? get appbar => AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white, // Change this to your desired color
-        ),
-        backgroundColor: Colors.black,
-        automaticallyImplyLeading: true,
-      );
+  PreferredSizeWidget? appbar(BuildContext context) {
+    return AppBar(
+      iconTheme: const IconThemeData(
+        color: Colors.white, // Change this to your desired color
+      ),
+      backgroundColor: Colors.black,
+      automaticallyImplyLeading: true,
+    );
+  }
 
   @override
   Color? get backgroundColor => Colors.black;

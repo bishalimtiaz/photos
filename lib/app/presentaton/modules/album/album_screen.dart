@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:photos/app/core/base/observer.dart';
 import 'package:photos/app/core/base/screen_state.dart';
+import 'package:photos/app/core/constants/app_values.dart';
+import 'package:photos/app/core/utils/context_ext.dart';
 import 'package:photos/app/domain/entities/album_entity.dart';
 import 'package:photos/app/presentaton/modules/album/controllers/album_controller.dart';
 import 'package:photos/app/presentaton/widgets/album_tile.dart';
@@ -19,10 +21,15 @@ class _AlbumScreenState extends ScreenState<AlbumScreen, AlbumController> {
   String? get routeName => AppRoutes.album;
 
   @override
-  PreferredSizeWidget? get appbar => AppBar(
-        centerTitle: false,
-        title: const Text("Albums"),
-      );
+  PreferredSizeWidget? appbar(BuildContext context) {
+    return AppBar(
+      centerTitle: false,
+      title: Text(
+        "Albums",
+        style: context.textTheme.displayLarge,
+      ),
+    );
+  }
 
   @override
   Widget buildScreen(BuildContext context) {
@@ -30,12 +37,12 @@ class _AlbumScreenState extends ScreenState<AlbumScreen, AlbumController> {
       observable: controller.albums,
       childBuilder: (BuildContext context, List<AlbumEntity> list, _) {
         return GridView.builder(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(AppValues.dimen_8),
           itemCount: list.length, // Replace with your list of albums
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, // Adjust for desired number of columns
-            crossAxisSpacing: 4.0,
-            mainAxisSpacing: 6.0,
+            crossAxisSpacing: AppValues.dimen_4,
+            mainAxisSpacing: AppValues.dimen_6,
           ),
           itemBuilder: (BuildContext context, int index) => GestureDetector(
             onTap: () async {
