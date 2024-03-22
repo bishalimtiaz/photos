@@ -3,9 +3,9 @@ import 'package:photos/app/core/base/screen_state.dart';
 import 'package:photos/app/core/constants/app_assets.dart';
 import 'package:photos/app/core/constants/app_values.dart';
 import 'package:photos/app/core/utils/context_ext.dart';
-import 'package:photos/app/presentaton/modules/photo_access/controllers/photo_access_controller.dart';
-import 'package:photos/app/presentaton/widgets/asset_image_view.dart';
-import 'package:photos/app/presentaton/widgets/primary_button.dart';
+import 'package:photos/app/presentation/modules/photo_access/controllers/photo_access_controller.dart';
+import 'package:photos/app/presentation/widgets/asset_image_view.dart';
+import 'package:photos/app/presentation/widgets/primary_button.dart';
 import 'package:photos/app/routes/app_router.dart';
 import 'package:photos/app/routes/app_routes.dart';
 

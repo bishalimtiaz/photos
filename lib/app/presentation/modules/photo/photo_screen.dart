@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:photos/app/core/base/screen_state.dart';
-import 'package:photos/app/presentaton/modules/photo/controllers/photo_controller.dart';
+import 'package:photos/app/presentation/modules/photo/controllers/photo_controller.dart';
 import 'package:photos/app/routes/app_routes.dart';
 
 class PhotoScreen extends StatefulWidget {

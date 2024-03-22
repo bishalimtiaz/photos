@@ -3,8 +3,8 @@ import 'package:photos/app/core/base/observer.dart';
 import 'package:photos/app/core/base/screen_state.dart';
 import 'package:photos/app/core/utils/context_ext.dart';
 import 'package:photos/app/domain/entities/photo_entity.dart';
-import 'package:photos/app/presentaton/modules/gallery/controllers/gallery_controller.dart';
-import 'package:photos/app/presentaton/widgets/photo_tile.dart';
+import 'package:photos/app/presentation/modules/gallery/controllers/gallery_controller.dart';
+import 'package:photos/app/presentation/widgets/photo_tile.dart';
 import 'package:photos/app/routes/app_router.dart';
 import 'package:photos/app/routes/app_routes.dart';
 

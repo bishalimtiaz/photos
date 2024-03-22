@@ -4,8 +4,8 @@ import 'package:photos/app/core/base/screen_state.dart';
 import 'package:photos/app/core/constants/app_values.dart';
 import 'package:photos/app/core/utils/context_ext.dart';
 import 'package:photos/app/domain/entities/album_entity.dart';
-import 'package:photos/app/presentaton/modules/album/controllers/album_controller.dart';
-import 'package:photos/app/presentaton/widgets/album_tile.dart';
+import 'package:photos/app/presentation/modules/album/controllers/album_controller.dart';
+import 'package:photos/app/presentation/widgets/album_tile.dart';
 import 'package:photos/app/routes/app_router.dart';
 import 'package:photos/app/routes/app_routes.dart';
 
