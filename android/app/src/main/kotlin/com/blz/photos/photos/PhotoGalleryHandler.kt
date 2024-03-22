@@ -22,6 +22,10 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
     }
 
     // Check storage permission before accessing photos (Optional - You might handle it on Flutter side)
+    private val contentResolver by lazy {
+        context.contentResolver
+    }
+
 
     private fun hasStoragePermission(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -44,7 +48,16 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
             return
         }
 
-        val contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+
+        val collection =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                MediaStore.Images.Media.getContentUri(
+                    MediaStore.VOLUME_EXTERNAL
+                )
+            } else {
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            }
+
         val projections = arrayOf(
             MediaStore.Images.Media.BUCKET_ID,
             MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
@@ -54,7 +67,7 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
         val findAlbums = HashMap<String, Album>()
 
         try {
-            context.contentResolver.query(contentUri, projections, null, null, orderBy)
+            contentResolver.query(collection, projections, null, null, orderBy)
                 ?.use { cursor ->
                     val bucketIdIndex =
                         cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)
@@ -91,7 +104,14 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
             return
         }
 
-        val contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        val collection =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                MediaStore.Images.Media.getContentUri(
+                    MediaStore.VOLUME_EXTERNAL
+                )
+            } else {
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            }
         val projections = arrayOf(MediaStore.Images.Media.DATA)
         val selection = MediaStore.Images.Media.BUCKET_ID + " = ?"
         val selectionArgs = arrayOf(albumId)
@@ -100,7 +120,7 @@ class PhotoGalleryHandler(private val context: Context) : MethodChannel.MethodCa
         val photos = mutableListOf<String>()
         try {
             context.contentResolver.query(
-                contentUri,
+                collection,
                 projections,
                 selection,
                 selectionArgs,
