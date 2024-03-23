@@ -4,7 +4,7 @@ import 'package:photos/app/data/model/response/album_response.dart';
 import 'package:photos/app/data/model/response/photo_response.dart';
 
 class PhotoService {
-  static const MethodChannel _channel = MethodChannel('com.blz.gallery/access');
+  final MethodChannel _channel = const MethodChannel('com.blz.gallery/access');
 
   // Method to fetch albums from the native platform
   Future<AlbumResponse?> fetchAlbums() async {
