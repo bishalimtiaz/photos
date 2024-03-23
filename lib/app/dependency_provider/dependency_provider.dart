@@ -16,9 +16,9 @@ class DependencyProvider {
   factory DependencyProvider() => _instance;
 
   Future<void> provideDI() async {
+    ServiceProvider().provide(locator);
     DataSourceProvider().provide(locator);
     RepositoryProvider().provide(locator);
-    ServiceProvider().provide(locator);
   }
 
   Future<void> provideSharedController<T extends Object>(
