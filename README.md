@@ -1,16 +1,13 @@
-# photos
+This project is developed with the Flutter Version: 3.19.3 
 
-A new Flutter project.
+Limitations and Improvement Scope:
+    - This app won't show cloud albums or photos. It will only show photos from device.
+    - Permission Deny wasn't handled due to time shortage. As a improvement we can show dialogue and redirect to settings if user deny photo permission.
+    - Tests for some of the modules or classes is not provided due to time shortage.
+    - Also there is open issue in flutter that we might experience: https://github.com/flutter/flutter/issues/124382
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+App Demo:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](https://drive.google.com/file/d/1HbFtK3llxC9GNtYEpXMsp5U1GbCYcgdN/view?usp=sharing)
